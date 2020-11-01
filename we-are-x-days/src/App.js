@@ -1,4 +1,5 @@
 import React from 'react';
+import db from './firebaseDB'
 
 class TotalDays extends React.Component {
 
@@ -8,9 +9,24 @@ class TotalDays extends React.Component {
     this.reset = this.reset.bind(this);
   }
 
+  initializeFirebase(){
+    db.collection("users").add({
+      first: "Ada",
+      last: "Lovelace",
+      born: 1815
+    })
+    .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+      console.error("Error adding document: ", error);
+    });
+  }
+
   componentDidMount(){
     this.getDays();
     this.getMessage();
+    this.initializeFirebase();
   }
 
   getDays() {
