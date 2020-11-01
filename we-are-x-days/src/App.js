@@ -1,77 +1,41 @@
 import React from 'react';
-import db from './firebaseDB'
 
-class TotalDays extends React.Component {
+class App extends React.Component {
 
-  constructor(props){
-    super(props)
-    this.state = {days: 0, message: '', date: '2020'}
-    this.reset = this.reset.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  initializeFirebase(){
-    db.collection("users").add({
-      first: "Ada",
-      last: "Lovelace",
-      born: 1815
-    })
-    .then(function(docRef) {
-      console.log("Document written with ID: ", docRef.id);
-    })
-    .catch(function(error) {
-      console.error("Error adding document: ", error);
-    });
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
-  componentDidMount(){
-    this.getDays();
-    this.getMessage();
-    this.initializeFirebase();
-  }
-
-  getDays() {
-    //calls api
-    console.log(`hello`)
-    this.setState({
-      days: 3
-    }, () => console.log(`days`, this.state))
-  }
-
-  getMessage() {
-    //calls api
-    this.setState({
-      message: "accidents"
-    }, () => console.log(this.state))
-  }
-
-  reset() {
-    //calls api
-    this.setState({
-      days: 0
-    }, () => console.log(`reset`, this.state))
+  handleSubmit(event) {
+    alert('Um nome foi enviado: ' + this.state.value);
+    event.preventDefault();
   }
 
   render() {
     return (
-      <div className="total-days">
-        <div className="main-message">
-          <h1>We are {this.state.days} days without {this.state.message} </h1>
-        </div>
-        <div className="reset-button">
-          <button onClick={this.reset}>Reset</button>
+      <div className="app">
+        <div className="enter site">
+          <h1>Create a Link </h1>
+          <form onSubmit={this.handleSubmit}>
+          <label>
+            Message
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Enviar" />
+          </form>
+          <a href="/site">site</a>
         </div>
       </div>
     );
   }
-}
-
-
-function App() {
-  return (
-    <div className="App">
-      <TotalDays />
-    </div>
-  );
 }
 
 export default App;
