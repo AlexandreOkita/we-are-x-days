@@ -1,6 +1,7 @@
 import React from 'react';
 import db from './firebaseDB'
-
+import './styles/App.css'
+//
 class App extends React.Component {
 
   constructor(props) {
@@ -30,29 +31,38 @@ class App extends React.Component {
       last_reset: lastDate
     })
     this.setState({link: '/site?id='+randomId});
-    console.log('created')
+    this.props.history.push(this.state.link);
   }
 
   render() {
     return (
       <div className="app">
-        <div className="enter site">
-          <h1>Create a Link </h1>
-          <form onSubmit={this.handleSubmit}>
-          <label>
-            Message:
-            <input type="text" value={this.state.value} onChange={this.handleChangeMessage} />
-          </label>
-          <label>
-            Number of days:
-            <input type="number" value={this.state.value} onChange={this.handleChangeDays} />
-          </label>
-          </form>
-          <p>Your link will return: We are {this.state.days} days without {this.state.message}</p>
-          <button onClick={this.createLink}>Create Link!</button>
-          <br/>
-          <br/>
-          <a href={this.state.link}>{this.state.link ? "https://wearexdayswithout.web.app/"+this.state.link : ''}</a>
+        <div className="enter-site">
+
+          <div className="title">
+            <h1>Days Without... </h1>
+          </div>
+
+          <div className="form">
+              <input type="text" value={this.state.value} placeholder="Message" onChange={this.handleChangeMessage} />
+          </div>
+
+          <div className="form">
+              <input type="number" placeholder="Number of Days" value={this.state.value} onChange={this.handleChangeDays} />
+          </div>
+
+          <div className="button" onClick={this.createLink}>
+              Create Link
+          </div>
+
+          <div className="preview">
+            <h4>Preview</h4>
+            <p>We are {this.state.days} days without {this.state.message}</p>
+          </div>
+
+          <div className="created-link">
+            <a href={this.state.link}>{this.state.link ? "https://wearexdayswithout.web.app"+this.state.link : ''}</a>
+          </div>
         </div>
       </div>
     );
