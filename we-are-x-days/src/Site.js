@@ -1,5 +1,6 @@
 import React from 'react';
 import db from './firebaseDB'
+import './styles/Site.css'
 
 class Site extends React.Component {
 
@@ -49,8 +50,8 @@ class Site extends React.Component {
         <div className="main-message">
           <h1>We are {this.state.days} seconds without {this.state.message} </h1>
         </div>
-        <div className="reset-button">
-          <button onClick={this.reset}>Reset</button>
+        <div className="reset-button" onClick={this.reset}>
+          Reset
         </div>
       </div>
     );
