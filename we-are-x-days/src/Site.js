@@ -25,9 +25,12 @@ class Site extends React.Component {
     }, () => console.log(`days`, this.state))
   }
 
-  getMessage() {
+  async getMessage() {
+    var sitesRef = await db.collection("sites");
+    var query = await sitesRef.doc(this.state.id).get();
+    const message = query.data().message
     this.setState({
-      message: "accidents"
+      message: message
     }, () => console.log(this.state))
   }
 

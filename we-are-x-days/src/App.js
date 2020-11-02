@@ -48,11 +48,11 @@ class App extends React.Component {
             <input type="number" value={this.state.value} onChange={this.handleChangeDays} />
           </label>
           </form>
-          <p>Your link will return: We are {this.state.days} seconds without {this.state.message}</p>
+          <p>Your link will return: We are {this.state.days} days without {this.state.message}</p>
           <button onClick={this.createLink}>Create Link!</button>
           <br/>
           <br/>
-          <a href={this.state.link}>{this.state.link ? "localhost:3000"+this.state.link : ''}</a>
+          <a href={this.state.link}>{this.state.link ? "https://wearexdayswithout.web.app/"+this.state.link : ''}</a>
         </div>
       </div>
     );

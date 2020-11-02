@@ -4,6 +4,17 @@
   },
   "hosting": {
     "site": "wearexdayswithout",
-    "public": "public"
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }
